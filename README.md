@@ -34,3 +34,8 @@ To Dowload Expo:
 
 Running Commands
 ```npm start```
+
+
+#Cool Stuff!
+
+- Try different types of qr codes: VCard, SMS, Email, String, etc (The program parses the data)
