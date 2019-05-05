@@ -7,7 +7,15 @@
  */
 
 import React, { Component } from "react";
+import QRCode from "react-native-qrcode";
+import QRCodeScanner from "react-native-qrcode-scanner";
+import Dialog, { DialogContent } from "react-native-popup-dialog";
+import { List, ListItem } from "react-native-elements";
 import {
+  FlatList,
+  PermissionsAndroid,
+  Dimensions,
+  Button,
   Platform,
   StyleSheet,
   Text,
@@ -16,13 +24,6 @@ import {
   Linking,
   AppRegistry
 } from "react-native";
-import { Button } from "react-native";
-import QRCode from "react-native-qrcode";
-import QRCodeScanner from "react-native-qrcode-scanner";
-import Dialog, { DialogContent } from "react-native-popup-dialog";
-import { Dimensions } from "react-native";
-import { List, ListItem } from "react-native-elements";
-import { FlatList } from "react-native";
 
 type Props = {};
 console.disableYellowBox = true;
@@ -34,9 +35,18 @@ export default class App extends Component<Props> {
     title: "",
     qrvis: false,
     isHidden: 0,
-    list: [{ key: "Example Data", title: "<-Example->" }]
+    list: [{ key: "Example Data", title: "<-Example->" }],
+    photoPermission: "denied"
   };
-
+  componentDidMount() {
+    this.permissionRequest();
+  }
+  permissionRequest = async () => {
+    Permissions.request("camera").then(response => {
+      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+      this.setState({ photoPermission: response });
+    });
+  };
   onSuccess(e) {
     let titleT = "";
     let dataT = "";
@@ -104,14 +114,22 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.MainContainer}>
         <View height={this.state.isHidden}>
-          <QRCodeScanner
-            onRead={this.onSuccess.bind(this)}
-            ref={node => {
-              scanner = node;
-            }}
-            reactivate={false}
-            vibrate={this.state.qrvis}
-          />
+          {this.state.permissionRequest === "authorized" ? (
+            <Text
+              style={{ marginTop: 20, marginBottom: 20, textAlign: "center" }}
+            >
+              No Permission for Camera
+            </Text>
+          ) : (
+            <QRCodeScanner
+              onRead={this.onSuccess.bind(this)}
+              ref={node => {
+                scanner = node;
+              }}
+              reactivate={false}
+              vibrate={this.state.qrvis}
+            />
+          )}
         </View>
 
         <Dialog

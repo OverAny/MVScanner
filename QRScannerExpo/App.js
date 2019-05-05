@@ -31,9 +31,16 @@ export default class App extends Component<Props> {
     title: "",
     open: false,
     list: [{ key: "Example Data", title: "<-Example->" }],
-    refresh: false
+    refresh: false,
+    hasCamera: false,
   };
-
+  componentDidMount() {
+    this.permissionRequest();
+  }
+  permissionRequest = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({ hasCamera: status === 'granted' });
+  };
   startScan() {
     this.setState({ open: true });
     console.log(this.state.open);
@@ -121,13 +128,18 @@ export default class App extends Component<Props> {
     return (
       //style={{marginTop: Constants.statusBarHeight}}
       <View style={styles.MainContainer}>
-        {this.state.open ? (
-          <BarCodeScanner
-            height={400}
-            width={Dimensions.get("window").width}
-            onBarCodeRead={this.onSuccess.bind(this)}
-          />
-        ) : (
+        {this.state.open 
+        ?   this.state.hasCamera === false
+              ? <Text style={{marginTop : 20, marginBottom: 20, textAlign: "center"}}>
+                No Permission for Camera
+                    </Text>
+              : <BarCodeScanner
+                  height={400}
+                  width={Dimensions.get("window").width}
+                  onBarCodeRead={this.onSuccess.bind(this)}
+                />
+       
+        : (
           <View />
         )}
 

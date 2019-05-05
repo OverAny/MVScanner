@@ -7,8 +7,8 @@
   "5": "e",
   "6": "d",
   "expo": {
-    "name": "Blank Template",
-    "slug": "expo-template-blank",
+    "name": "QR Scanner",
+    "slug": "QR Scanner",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
