@@ -1,0 +1,4 @@
+#Sat May 04 21:43:57 PDT 2019
+base.0=C\:\\Users\\Ronus\\OneDrive\\Documents\\GitHub\\MVScanner\\QRScanner\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
