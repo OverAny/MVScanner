@@ -14,11 +14,12 @@ import {
   View,
   TouchableOpacity,
   Linking,
-  AppRegistry
+  AppRegistry,
+  FlatList, 
+  Alert,
+  Dimensions,
+  Button
 } from "react-native";
-import { Button } from "react-native";
-import { Dimensions } from "react-native";
-import { FlatList, Alert } from "react-native";
 import { BarCodeScanner, Permissions } from "expo";
 import { Constants } from "expo";
 
