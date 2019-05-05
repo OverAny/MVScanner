@@ -2,11 +2,11 @@
 
 Scanner for the MVHacks Team :)
 
-#QRScanner
+# QRScanner
 
 This is the vanilla react native version of the project compared to the expo version.
 
-#How to run:
+-How to run:
 
 Commands:
 
@@ -17,11 +17,11 @@ Running Commands
 ```npm i```
 ```react-native run-android```
 
-#QRScannerExpo
+# QRScannerExpo
 
 This is the expo version of the project compared to the vanilla version.
 
-#How to run:
+-How to run:
 
 Commands:
 
