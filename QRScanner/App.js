@@ -131,6 +131,7 @@ export default class App extends Component<Props> {
           }}
         >
           <DialogContent>
+            <Text style={{ textAlign: "center", marginTop: 15 }}>
               {this.state.data}
             </Text>
           </DialogContent>
